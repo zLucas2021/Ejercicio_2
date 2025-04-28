@@ -46,4 +46,5 @@ def analizar_lineas(ruta_archivo):
 
 
 resultado = analizar_lineas("ejercicio.txt")
-print(resultado)
+for clave, valor in resultado.items():
+    print(f"{clave}: {valor}")
