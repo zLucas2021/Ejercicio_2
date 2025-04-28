@@ -14,15 +14,16 @@ Resultado esperado:
 "lineas_con_contenido": 8
 """
 
-"""
-@param ruta_archivo: Ruta al archivo de texto que se desea analizar.
-@return: Diccionario con las siguientes claves:
-    - total_lineas: Número total de líneas en el archivo.
-    - lineas_vacias: Número de líneas completamente vacías (solo contienen un salto de línea \n).
-    - lineas_solo_espacios: Número de líneas que contienen únicamente espacios o tabulaciones.  
-    - lineas_con_contenido: Número de líneas que contienen texto o cualquier otro contenido no vacío.
-"""
+
 def analizar_lineas(ruta_archivo):
+    """
+        @param ruta_archivo: Ruta al archivo de texto que se desea analizar.
+        @return: Diccionario con las siguientes claves:
+            - total_lineas: Número total de líneas en el archivo.
+            - lineas_vacias: Número de líneas completamente vacías (solo contienen un salto de línea \n).
+            - lineas_solo_espacios: Número de líneas que contienen únicamente espacios o tabulaciones.  
+            - lineas_con_contenido: Número de líneas que contienen texto o cualquier otro contenido no vacío.
+    """
     with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
         lineas = archivo.readlines()
     
