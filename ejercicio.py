@@ -24,21 +24,25 @@ def analizar_lineas(ruta_archivo):
             - lineas_solo_espacios: Número de líneas que contienen únicamente espacios o tabulaciones.  
             - lineas_con_contenido: Número de líneas que contienen texto o cualquier otro contenido no vacío.
     """
-    with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
-        lineas = archivo.readlines()
-    
-    total = len(lineas)
-    vacias = sum(1 for linea in lineas if linea == '\n')
-    solo_espacios = sum(1 for linea in lineas if linea.strip() == '' and linea != '\n')
-    contenido = total - vacias - solo_espacios
+    try:
+        with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
+            lineas = archivo.readlines()
+        
+        total = len(lineas)
+        vacias = sum(1 for linea in lineas if linea == '\n')
+        solo_espacios = sum(1 for linea in lineas if linea.strip() == '' and linea != '\n')
+        contenido = total - vacias - solo_espacios
 
-    archivo.close()
-    return {
-        "total_lineas": total,
-        "lineas_vacias": vacias,
-        "lineas_solo_espacios": solo_espacios,
-        "lineas_con_contenido": contenido
-    }
+        return {
+            "total_lineas": total,
+            "lineas_vacias": vacias,
+            "lineas_solo_espacios": solo_espacios,
+            "lineas_con_contenido": contenido
+        }
+    except FileNotFoundError:
+        return {"error": f"El archivo '{ruta_archivo}' no fue encontrado."}
+    except Exception as e:
+        return {"error": f"Ocurrió un error: {str(e)}"}
 
 
 resultado = analizar_lineas("ejercicio.txt")
